@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient"
+    tools:context="com.polar.androidblesdk.MainActivity">
+
+
+    <!--    <Button-->
+    <!--        android:id="@+id/connect_button"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="@string/connect_to_device"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/auto_connect_button" />-->
+
+    <!--    <Button-->
+    <!--        android:id="@+id/auto_connect_button"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="@string/auto_connect_toggle"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/scan_button" />-->
+
+    <!--    <Button-->
+    <!--        android:id="@+id/scan_button"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="@string/scan_devices"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/hr_button" />-->
+
+
+    <!--    <Button-->
+    <!--        android:id="@+id/broadcast_button"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginBottom="12dp"-->
+    <!--        android:text="@string/listen_broadcast"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/hr_button"-->
+    <!--        tools:layout_editor_absoluteX="0dp" />-->
+
+    <!--    <Button-->
+    <!--        android:id="@+id/hr_button"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginBottom="160dp"-->
+    <!--        android:text="@string/start_hr_stream"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        tools:layout_editor_absoluteX="0dp" />-->
+
+
+    <EditText
+        android:id="@+id/time_display_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_background"
+        android:hint="Tempo inicial:"
+        android:inputType="number"
+        android:padding="10dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.853"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.374" />
+
+
+    <EditText
+        android:id="@+id/frequency_display_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_background"
+        android:hint="Frequência inicial:"
+        android:padding="10dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/time_display_text"
+        app:layout_constraintHorizontal_bias="0.826"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.374" />
+
+    <ImageButton
+        android:id="@+id/configButton3"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="@null"
+        android:scaleType="fitStart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        app:srcCompat="@drawable/ic_baseline_settings_24" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_background"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.182"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.872">
+
+        <!-- ImageButton -->
+        <ImageButton
+            android:id="@+id/broadcast_button"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_monitor_heart_24" />
+
+        <!-- TextView -->
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Broadcast"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="@+id/broadcast_button"
+            app:layout_constraintStart_toStartOf="@+id/broadcast_button"
+            app:layout_constraintTop_toBottomOf="@+id/broadcast_button" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_layout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_background"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/container_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.813"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/container_layout"
+        app:layout_constraintVertical_bias="0.0">
+
+        <!-- ImageButton -->
+        <ImageButton
+            android:id="@+id/start_button"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_directions_run_24" />
+
+        <!-- TextView -->
+        <TextView
+            android:id="@+id/text_stop_begin_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Iniciar"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="@+id/start_button"
+            app:layout_constraintStart_toStartOf="@+id/start_button"
+            app:layout_constraintTop_toBottomOf="@+id/start_button" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/text_container"
+        android:layout_width="183dp"
+        android:layout_height="96dp"
+        android:background="@drawable/rounded_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/chrono_container"
+        app:layout_constraintHorizontal_bias="0.73"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.48">
+
+        <!-- First TextView -->
+        <TextView
+            android:id="@+id/hr_display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Frequência cardíaca: "
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Second TextView, positioned below the first TextView -->
+        <TextView
+            android:id="@+id/hr_display_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="-----"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="@+id/hr_display"
+            app:layout_constraintStart_toStartOf="@+id/hr_display"
+            app:layout_constraintTop_toBottomOf="@+id/hr_display" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/chrono_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_background"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.83"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time_display_text"
+        app:layout_constraintVertical_bias="0.077">
+
+        <Chronometer
+            android:id="@+id/chronometer"
+            android:layout_width="108dp"
+            android:layout_height="45dp"
+            android:elevation="5dp"
+            android:textColor="#FFFFFF"
+            android:textSize="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_background"
+        android:padding="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.165">
+
+        <!-- First EditText -->
+        <EditText
+            android:id="@+id/edit_text_max_hr"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="16dp"
+            android:hint="Frequência cardíaca máxima"
+            android:inputType="number"
+            app:layout_constraintBottom_toTopOf="@+id/edit_text_min_hr"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Second EditText -->
+        <EditText
+            android:id="@+id/edit_text_min_hr"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:hint="Frequência cardíaca minima"
+            android:inputType="number"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_text_max_hr" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
