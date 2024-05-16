@@ -7,7 +7,6 @@ The **MoveApp** is designed to help athletes maintain a specific heart rate rhyt
 - **Real-Time Heart Rate Monitoring**: Utilizes the Polar sensor to monitor heart rate continuously.
 - **Metronome Adjustment**: Dynamically adjusts the metronome to match the target heart rate.
 - **User-Friendly Interface**: Simple and intuitive interface, making it easy for athletes of all levels to use.
-- **Performance Insights**: Offers insights and summaries post-training to help athletes track their progress.
 
 ## Getting Started
 
