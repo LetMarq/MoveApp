@@ -8,9 +8,11 @@ import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 
 class ActivitiesActivity : AppCompatActivity() {
-    private lateinit var selectNatacao: ImageButton // Change Button to ImageButton
-    private lateinit var selectRunning: ImageButton // Change Button to ImageButton
-    private lateinit var selectCycling: ImageButton // Change Button to ImageButton
+    private lateinit var selectNatacao: ImageButton
+    private lateinit var selectRunning: ImageButton
+    private lateinit var selectCycling: ImageButton
+    private lateinit var switchToConfigActivity: ImageButton
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +21,8 @@ class ActivitiesActivity : AppCompatActivity() {
         selectNatacao = findViewById(R.id.natacaoButton)
         selectRunning = findViewById(R.id.runButton)
         selectCycling = findViewById(R.id.cyclingButton)
+        switchToConfigActivity = findViewById(R.id.configButton)
+
 
         selectNatacao.setOnClickListener {
             startActivity(Intent(this@ActivitiesActivity, FrequencyActivity::class.java))
@@ -30,6 +34,10 @@ class ActivitiesActivity : AppCompatActivity() {
 
         selectCycling.setOnClickListener {
             startActivity(Intent(this@ActivitiesActivity, FrequencyActivity::class.java))
+        }
+
+        switchToConfigActivity.setOnClickListener {
+            startActivity(Intent(this@ActivitiesActivity, ConfigurationActivity::class.java))
         }
     }
 }

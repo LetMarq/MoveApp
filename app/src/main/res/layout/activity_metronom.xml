@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.011" />
 
     <ImageButton
-        android:id="@+id/configButton2"
+        android:id="@+id/configButton"
         android:layout_width="44dp"
         android:layout_height="44dp"
         android:background="@null"

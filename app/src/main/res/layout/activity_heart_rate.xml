@@ -82,7 +82,7 @@
         app:layout_constraintVertical_bias="0.374" />
 
     <ImageButton
-        android:id="@+id/configButton3"
+        android:id="@+id/configButton"
         android:layout_width="44dp"
         android:layout_height="44dp"
         android:background="@null"
@@ -185,25 +185,16 @@
             android:id="@+id/hr_display"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
             android:padding="8dp"
             android:text="Frequência cardíaca: "
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Second TextView, positioned below the first TextView -->
-        <TextView
-            android:id="@+id/hr_display_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="-----"
-            android:textColor="#FFFFFF"
-            android:textSize="30sp"
-            app:layout_constraintEnd_toEndOf="@+id/hr_display"
-            app:layout_constraintStart_toStartOf="@+id/hr_display"
-            app:layout_constraintTop_toBottomOf="@+id/hr_display" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

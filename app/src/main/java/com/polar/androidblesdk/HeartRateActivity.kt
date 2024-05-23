@@ -1,6 +1,8 @@
 package com.polar.androidblesdk
 
 import android.Manifest
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -74,6 +76,7 @@ class HeartRateActivity : AppCompatActivity() {
 
     private lateinit var broadcastButton: ImageButton
     private lateinit var startButton: ImageButton
+    private lateinit var switchToConfigActivity: ImageButton
     private lateinit var hrDisplayTextView: TextView
     private lateinit var maxHrEditText: TextView
     private lateinit var minHrEditText: TextView
@@ -96,6 +99,13 @@ class HeartRateActivity : AppCompatActivity() {
         maxHrEditText = findViewById(R.id.edit_text_max_hr)
         minHrEditText = findViewById(R.id.edit_text_min_hr)
 
+        // Recuperando o valor do deviceId das preferências compartilhadas
+        val sharedPref = getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
+        deviceId = sharedPref.getString("deviceId", deviceId) ?: deviceId
+
+        // Registrando uma mensagem de log para verificar o valor recuperado
+        showToast("Device ID: $deviceId")
+
         startButtonText = findViewById(R.id.text_stop_begin_button)  // Initialize your TextView
         setupStartButton()
 
@@ -103,7 +113,10 @@ class HeartRateActivity : AppCompatActivity() {
 //        timeDisplayText = findViewById(R.id.time_display_text)
         toneGenerator = ToneGenerator(AudioManager.STREAM_ALARM, 100) // Adjust the volume level (100 is maximum)
 
-
+        switchToConfigActivity = findViewById(R.id.configButton)
+        switchToConfigActivity.setOnClickListener {
+            startActivity(Intent(this@HeartRateActivity, ConfigurationActivity::class.java))
+        }
 
         api.setPolarFilter(false)
 
@@ -310,33 +323,6 @@ class HeartRateActivity : AppCompatActivity() {
             DrawableCompat.setTint(buttonDrawable, resources.getColor(R.color.primaryColor))
         }
         button.background = buttonDrawable
-    }
-
-    private fun requestStreamSettings(identifier: String, feature: PolarBleApi.PolarDeviceDataType): Flowable<PolarSensorSetting> {
-        val availableSettings = api.requestStreamSettings(identifier, feature)
-        val allSettings = api.requestFullStreamSettings(identifier, feature)
-            .onErrorReturn { error: Throwable ->
-                Log.w(TAG, "Full stream settings are not available for feature $feature. REASON: $error")
-                PolarSensorSetting(emptyMap())
-            }
-        return Single.zip(availableSettings, allSettings) { available: PolarSensorSetting, all: PolarSensorSetting ->
-            if (available.settings.isEmpty()) {
-                throw Throwable("Settings are not available")
-            } else {
-                Log.d(TAG, "Feature " + feature + " available settings " + available.settings)
-                Log.d(TAG, "Feature " + feature + " all settings " + all.settings)
-                return@zip android.util.Pair(available, all)
-            }
-        }
-            .observeOn(AndroidSchedulers.mainThread())
-            .toFlowable()
-            .flatMap { sensorSettings: android.util.Pair<PolarSensorSetting, PolarSensorSetting> ->
-                DialogUtility.showAllSettingsDialog(
-                    this@HeartRateActivity,
-                    sensorSettings.first.settings,
-                    sensorSettings.second.settings
-                ).toFlowable()
-            }
     }
 
     private fun showToast(message: String) {

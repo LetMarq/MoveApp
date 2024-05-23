@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 class FrequencyActivity : AppCompatActivity() {
     private lateinit var selectMetronomo: ImageButton
     private lateinit var selectHeartRate: ImageButton
+    private lateinit var switchToConfigActivity: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,6 +18,7 @@ class FrequencyActivity : AppCompatActivity() {
 
         selectMetronomo = findViewById(R.id.metronomoButton)
         selectHeartRate = findViewById(R.id.hearRateButton)
+        switchToConfigActivity = findViewById(R.id.configButton)
 
         selectMetronomo.setOnClickListener {
             startActivity(Intent(this@FrequencyActivity, MetronomActivity::class.java))
@@ -25,5 +27,10 @@ class FrequencyActivity : AppCompatActivity() {
         selectHeartRate.setOnClickListener {
             startActivity(Intent(this@FrequencyActivity, HeartRateActivity::class.java))
         }
+
+        switchToConfigActivity.setOnClickListener {
+            startActivity(Intent(this@FrequencyActivity, ConfigurationActivity::class.java))
+        }
+
     }
 }

@@ -1,5 +1,6 @@
 package com.polar.androidblesdk
 
+import android.content.Intent
 import android.media.AudioManager
 import android.media.ToneGenerator
 import android.os.Bundle
@@ -10,6 +11,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.Chronometer
 import android.widget.EditText
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import java.util.*
 
@@ -18,6 +20,7 @@ class MetronomActivity : AppCompatActivity() {
     private lateinit var mStartButton: Button
     private lateinit var mStopButton: Button
     private lateinit var mChrono: Chronometer
+    private lateinit var switchToConfigActivity: ImageButton
     private var lastPause: Long = 0
     private val metronomeHandler = Handler(Looper.getMainLooper())
     private var toneGenerator: ToneGenerator? = null
@@ -31,6 +34,8 @@ class MetronomActivity : AppCompatActivity() {
         mStartButton = findViewById(R.id.buttonStartMetronomo)
         mStopButton = findViewById(R.id.buttonStopMetronomo)
         mChrono = findViewById(R.id.chronometer)
+        switchToConfigActivity = findViewById(R.id.configButton)
+
 
         for (i in 1..10) {
             val bpmEditTextId = resources.getIdentifier("bpm$i", "id", packageName)
@@ -43,6 +48,10 @@ class MetronomActivity : AppCompatActivity() {
                 bpmEditTexts.add(bpmEditText)
                 timeEditTexts.add(timeEditText)
             }
+        }
+
+        switchToConfigActivity.setOnClickListener {
+            startActivity(Intent(this@MetronomActivity, ConfigurationActivity::class.java))
         }
 
         mStartButton.setOnClickListener {
