@@ -30,7 +30,11 @@ import io.reactivex.rxjava3.disposables.Disposable
 import java.util.*
 import android.media.AudioManager
 import android.media.ToneGenerator
+import android.widget.EditText
 import android.widget.ImageButton
+import java.util.concurrent.Executors
+import java.util.concurrent.ScheduledExecutorService
+import java.util.concurrent.TimeUnit
 
 class HeartRateActivity : AppCompatActivity() {
     companion object {
@@ -39,13 +43,13 @@ class HeartRateActivity : AppCompatActivity() {
         private const val PERMISSION_REQUEST_CODE = 1
     }
 
-    // ATTENTION! Replace with the device ID from your device.
     private var deviceId = "C3E38426"
     private var toneGenerator: ToneGenerator? = null
     private var metronomeTimer: Timer? = null
 
+    private var frequencyChangeTimer: Timer? = null
+
     private val api: PolarBleApi by lazy {
-        // Notice all features are enabled
         PolarBleApiDefaultImpl.defaultImplementation(
             applicationContext,
             setOf(
@@ -78,14 +82,21 @@ class HeartRateActivity : AppCompatActivity() {
     private lateinit var startButton: ImageButton
     private lateinit var switchToConfigActivity: ImageButton
     private lateinit var hrDisplayTextView: TextView
-    private lateinit var maxHrEditText: TextView
-    private lateinit var minHrEditText: TextView
+    private lateinit var maxHrEditText: EditText
+    private lateinit var minHrEditText: EditText
     private lateinit var startButtonText: TextView
+    private lateinit var initialFrequencyEditText: EditText
+    private lateinit var initialTimeEditText: EditText
+
     private var currentInterval: Long? = null
+    private var currentFrequency: Int = 60  // Valor padrão
+    @Volatile private var latestHR: Int = 0  // Latest heart rate received
+    private var scheduledExecutorService: ScheduledExecutorService? = null
 
 
 
-    //Verity Sense offline recording use
+
+
     private val entryCache: MutableMap<String, MutableList<PolarOfflineRecordingEntry>> = mutableMapOf()
 
 
@@ -98,8 +109,10 @@ class HeartRateActivity : AppCompatActivity() {
         hrDisplayTextView = findViewById(R.id.hr_display)
         maxHrEditText = findViewById(R.id.edit_text_max_hr)
         minHrEditText = findViewById(R.id.edit_text_min_hr)
+        initialFrequencyEditText = findViewById(R.id.frequency_display_text)
+        initialTimeEditText = findViewById(R.id.time_display_text)
+        scheduledExecutorService = Executors.newSingleThreadScheduledExecutor()
 
-        // Recuperando o valor do deviceId das preferências compartilhadas
         val sharedPref = getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
         deviceId = sharedPref.getString("deviceId", deviceId) ?: deviceId
 
@@ -107,7 +120,6 @@ class HeartRateActivity : AppCompatActivity() {
         showToast("Device ID: $deviceId")
 
         startButtonText = findViewById(R.id.text_stop_begin_button)  // Initialize your TextView
-        setupStartButton()
 
 //        frequencyDisplayText = findViewById(R.id.frequency_display_text)
 //        timeDisplayText = findViewById(R.id.time_display_text)
@@ -120,7 +132,6 @@ class HeartRateActivity : AppCompatActivity() {
 
         api.setPolarFilter(false)
 
-        // If there is need to log what is happening inside the SDK, it can be enabled like this:
         val enableSdkLogs = false
         if(enableSdkLogs) {
             api.setApiLogger { s: String -> Log.d(API_LOGGER_TAG, s) }
@@ -164,33 +175,15 @@ class HeartRateActivity : AppCompatActivity() {
 
             override fun hrNotificationReceived(identifier: String, data: PolarHrData.PolarHrSample) {
                 val hr = data.hr
+                synchronized(this) {
+                    latestHR = hr  // Update the shared heart rate variable
+                }
 
                 runOnUiThread {
                     hrDisplayTextView.text = "Frequência cardíaca: $hr"
                 }
-                if (!isMetronomeActive) return
-                val maxHr = maxHrEditText.text.toString().toIntOrNull()
-                val minHr = minHrEditText.text.toString().toIntOrNull()
-
-
-                if (maxHr != null && minHr != null) {
-                    val targetHr = when {
-                        hr > maxHr -> minHr
-                        hr < minHr -> maxHr
-                        else -> hr
-                    }
-
-                    val interval = 60000L / targetHr
-
-                    if (hr !in minHr..maxHr) {
-                        startMetronome(interval)
-                    } else {
-                        stopMetronome()
-                    }
-                } else {
-                    Log.e(TAG, "Invalid max or min heart rate value")
-                }
             }
+
 
             override fun disInformationReceived(identifier: String, uuid: UUID, value: String) {
                 Log.d(TAG, "DIS INFO uuid: $uuid value: $value")
@@ -222,11 +215,13 @@ class HeartRateActivity : AppCompatActivity() {
             isMetronomeActive = !isMetronomeActive
 
             if (isMetronomeActive) {
-                startButtonText.text = "Parar"  // Change text to 'Stop'
+                startButtonText.text = "Parar"
+                currentFrequency = initialFrequencyEditText.text.toString().toIntOrNull() ?: 60
                 showToast("Metronome monitoring activated.")
+                scheduleFrequencyAdjustment()
             } else {
                 stopMetronome()
-                startButtonText.text = "Iniciar"  // Change text back to 'Start'
+                startButtonText.text = "Iniciar"
                 showToast("Metronome monitoring deactivated.")
             }
         }
@@ -259,28 +254,6 @@ class HeartRateActivity : AppCompatActivity() {
         }
     }
 
-    private fun startMetronome(interval: Long) {
-        // Only start or adjust the metronome if the interval has changed
-        if (currentInterval != interval) {
-            stopMetronome() // Stop existing timer if running
-            currentInterval = interval
-            metronomeTimer = Timer().apply {
-                scheduleAtFixedRate(object : TimerTask() {
-                    override fun run() {
-                        toneGenerator?.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 100) // Short beep
-                    }
-                }, 0, interval)
-            }
-        }
-    }
-    private fun stopMetronome() {
-        if (currentInterval != null) {
-            metronomeTimer?.cancel()
-            metronomeTimer = null
-            currentInterval = null
-        }
-    }
-
     public override fun onPause() {
         super.onPause()
     }
@@ -296,48 +269,28 @@ class HeartRateActivity : AppCompatActivity() {
         toneGenerator?.release()
     }
 
-    private fun toggleButtonDown(button: Button, text: String? = null) {
-        toggleButton(button, true, text)
-    }
-
-    private fun toggleButtonDown(button: Button, @StringRes resourceId: Int) {
-        toggleButton(button, true, getString(resourceId))
-    }
-
-    private fun toggleButtonUp(button: Button, text: String? = null) {
-        toggleButton(button, false, text)
-    }
-
-    private fun toggleButtonUp(button: Button, @StringRes resourceId: Int) {
-        toggleButton(button, false, getString(resourceId))
-    }
-
-    private fun toggleButton(button: Button, isDown: Boolean, text: String? = null) {
-        if (text != null) button.text = text
-
-        var buttonDrawable = button.background
-        buttonDrawable = DrawableCompat.wrap(buttonDrawable!!)
-        if (isDown) {
-            DrawableCompat.setTint(buttonDrawable, resources.getColor(R.color.primaryDarkColor))
-        } else {
-            DrawableCompat.setTint(buttonDrawable, resources.getColor(R.color.primaryColor))
-        }
-        button.background = buttonDrawable
-    }
-
     private fun showToast(message: String) {
         val toast = Toast.makeText(applicationContext, message, Toast.LENGTH_LONG)
         toast.show()
     }
 
-    private fun showDialog(title: String, message: String) {
-        AlertDialog.Builder(this)
-            .setTitle(title)
-            .setMessage(message)
-            .setPositiveButton("OK") { _, _ ->
-                // Respond to positive button press
+    private fun scheduleFrequencyAdjustment() {
+        scheduledExecutorService?.scheduleAtFixedRate({
+            val maxHr = maxHrEditText.text.toString().toIntOrNull()
+            val minHr = minHrEditText.text.toString().toIntOrNull()
+            Log.d(TAG, "HR: ${latestHR.toString()} | FR: ${currentFrequency.toString()}")
+
+            if (maxHr != null && minHr != null) {
+                synchronized(this) {
+                    if (latestHR < maxHr) {
+                        currentFrequency += 2
+                    } else if (latestHR > minHr) {
+                        currentFrequency -= 2
+                    }
+                }
+                startMetronomeWithFrequency(currentFrequency)
             }
-            .show()
+        }, 0, 5, TimeUnit.SECONDS)
     }
 
     private fun disableAllButtons() {
@@ -346,15 +299,6 @@ class HeartRateActivity : AppCompatActivity() {
 
     private fun enableAllButtons() {
         broadcastButton.isEnabled = true
-    }
-
-    private fun disposeAllStreams() {
-        ecgDisposable?.dispose()
-        accDisposable?.dispose()
-        gyrDisposable?.dispose()
-        magDisposable?.dispose()
-        ppgDisposable?.dispose()
-        ppgDisposable?.dispose()
     }
 
 
@@ -437,19 +381,39 @@ class HeartRateActivity : AppCompatActivity() {
             Log.d(TAG, "HR streaming already in progress.")
         }
     }
-    private fun setupStartButton() {
-        startButton.setOnClickListener {
-            isMetronomeActive = !isMetronomeActive
-
-            if (isMetronomeActive) {
-                startButtonText.text = "Parar"  // Change text to 'Stop'
-                showToast("Metronome monitoring activated.")
-            } else {
-                stopMetronome()
-                startButtonText.text = "Iniciar"  // Change text back to 'Start'
-                showToast("Metronome monitoring deactivated.")
-            }
+    private fun startMetronomeWithFrequency(frequency: Int) {
+        val interval = 60000L / frequency
+        metronomeTimer?.cancel()
+        metronomeTimer = Timer().apply {
+            scheduleAtFixedRate(object : TimerTask() {
+                override fun run() {
+                    toneGenerator?.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 100)
+                }
+            }, 0, interval)
         }
+    }
+
+    private fun stopMetronome() {
+        // This will stop all currently executing tasks and prevent scheduled tasks from starting.
+        scheduledExecutorService?.shutdownNow()
+        try {
+            // Ensure termination of all tasks.
+            if (!scheduledExecutorService?.awaitTermination(1, TimeUnit.SECONDS)!!) {
+                scheduledExecutorService?.shutdownNow()
+            }
+        } catch (ie: InterruptedException) {
+            // Re-cancel if current thread also interrupted
+            scheduledExecutorService?.shutdownNow()
+            Thread.currentThread().interrupt()  // preserve interrupt status
+        }
+
+        // Nullify the executor service if you plan to reinitialize it later
+        scheduledExecutorService = null
+
+        // Stop the tone generator if used for playing sound
+        toneGenerator?.stopTone()
+        toneGenerator?.release()
+        toneGenerator = null
     }
 
 
