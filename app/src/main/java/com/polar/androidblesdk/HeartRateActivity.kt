@@ -30,6 +30,7 @@ import io.reactivex.rxjava3.disposables.Disposable
 import java.util.*
 import android.media.AudioManager
 import android.media.ToneGenerator
+import android.os.Handler
 import android.widget.EditText
 import android.widget.ImageButton
 import java.util.concurrent.Executors
@@ -92,6 +93,10 @@ class HeartRateActivity : AppCompatActivity() {
     private var currentFrequency: Int = 60  // Valor padrão
     @Volatile private var latestHR: Int = 0  // Latest heart rate received
     private var scheduledExecutorService: ScheduledExecutorService? = null
+    private val handler = Handler()
+    private val MAX_FREQUENCY = 120
+    private val MIN_FREQUENCY = 20
+
 
 
 
@@ -213,12 +218,16 @@ class HeartRateActivity : AppCompatActivity() {
 
         startButton.setOnClickListener {
             isMetronomeActive = !isMetronomeActive
+            val delayInSeconds = initialTimeEditText.text.toString().toIntOrNull() ?: 0
+            val delayInMillis = delayInSeconds * 1000
 
             if (isMetronomeActive) {
                 startButtonText.text = "Parar"
                 currentFrequency = initialFrequencyEditText.text.toString().toIntOrNull() ?: 60
                 showToast("Metronome monitoring activated.")
-                scheduleFrequencyAdjustment()
+                handler.postDelayed({
+                    scheduleFrequencyAdjustment()
+                }, delayInMillis.toLong())
             } else {
                 stopMetronome()
                 startButtonText.text = "Iniciar"
@@ -282,9 +291,9 @@ class HeartRateActivity : AppCompatActivity() {
 
             if (maxHr != null && minHr != null) {
                 synchronized(this) {
-                    if (latestHR < maxHr) {
+                    if (latestHR < maxHr && currentFrequency <= MAX_FREQUENCY) {
                         currentFrequency += 2
-                    } else if (latestHR > minHr) {
+                    } else if (latestHR > minHr && currentFrequency >= MIN_FREQUENCY) {
                         currentFrequency -= 2
                     }
                 }
