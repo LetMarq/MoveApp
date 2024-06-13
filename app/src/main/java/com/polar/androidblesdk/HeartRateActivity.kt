@@ -8,9 +8,6 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -31,8 +28,8 @@ import java.util.*
 import android.media.AudioManager
 import android.media.ToneGenerator
 import android.os.Handler
-import android.widget.EditText
-import android.widget.ImageButton
+import android.os.SystemClock
+import android.widget.*
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
@@ -88,6 +85,8 @@ class HeartRateActivity : AppCompatActivity() {
     private lateinit var startButtonText: TextView
     private lateinit var initialFrequencyEditText: EditText
     private lateinit var initialTimeEditText: EditText
+    private lateinit var chronometer: Chronometer
+
 
     private var currentInterval: Long? = null
     private var currentFrequency: Int = 60  // Valor padrão
@@ -117,6 +116,7 @@ class HeartRateActivity : AppCompatActivity() {
         initialFrequencyEditText = findViewById(R.id.frequency_display_text)
         initialTimeEditText = findViewById(R.id.time_display_text)
         scheduledExecutorService = Executors.newSingleThreadScheduledExecutor()
+        chronometer = findViewById(R.id.chronometer)
 
         val sharedPref = getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
         deviceId = sharedPref.getString("deviceId", deviceId) ?: deviceId
@@ -228,10 +228,13 @@ class HeartRateActivity : AppCompatActivity() {
                 handler.postDelayed({
                     scheduleFrequencyAdjustment()
                 }, delayInMillis.toLong())
+                chronometer.base = SystemClock.elapsedRealtime()
+                chronometer.start()
             } else {
                 stopMetronome()
                 startButtonText.text = "Iniciar"
                 showToast("Metronome monitoring deactivated.")
+                chronometer.stop()
             }
         }
 
@@ -292,9 +295,9 @@ class HeartRateActivity : AppCompatActivity() {
             if (maxHr != null && minHr != null) {
                 synchronized(this) {
                     if (latestHR < maxHr && currentFrequency <= MAX_FREQUENCY) {
-                        currentFrequency += 2
+                        currentFrequency += 1
                     } else if (latestHR > minHr && currentFrequency >= MIN_FREQUENCY) {
-                        currentFrequency -= 2
+                        currentFrequency -= 1
                     }
                 }
                 startMetronomeWithFrequency(currentFrequency)

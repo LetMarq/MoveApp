@@ -38,13 +38,13 @@
         android:id="@+id/metronom_container"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="144dp"
         android:background="@drawable/rounded_background"
-        app:layout_constraintEnd_toEndOf="parent"
         android:padding="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/heartrate_container"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/textView13">
 
         <!-- ImageButton positioned at the top within the container -->
         <ImageButton
@@ -74,13 +74,14 @@
         android:id="@+id/heartrate_container"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="380dp"
-        android:padding="16dp"
         android:background="@drawable/rounded_background"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/metronom_container"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/metronom_container"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.658">
 
         <!-- ImageButton positioned at the top within the container -->
         <ImageButton
@@ -106,7 +107,7 @@
             app:layout_constraintTop_toBottomOf="@id/hearRateButton" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--    <Button-->
+    <!--    <Button-->
 <!--        android:id="@+id/metronomoButton"-->
 <!--        android:layout_width="300dp"-->
 <!--        android:layout_height="70dp"-->

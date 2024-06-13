@@ -7,532 +7,558 @@
     android:background="@drawable/background_gradient"
     tools:context=".MetronomActivity">
 
-    <TextView
-        android:id="@+id/textNumberTwo6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Metrônomo"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.011" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/configButton"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
-        android:background="@null"
-        android:scaleType="fitStart"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.043"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"
-        app:srcCompat="@drawable/ic_baseline_settings_24" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textNumberTwo4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="Tempo"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView24"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/textNumberTwo6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Metrônomo"
+                android:textSize="34sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.011" />
 
-    <EditText
-        android:id="@+id/time2"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+            <ImageButton
+                android:id="@+id/configButton"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@null"
+                android:scaleType="fitStart"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.043"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.023"
+                app:srcCompat="@drawable/ic_baseline_settings_24" />
 
-        android:background="@drawable/rounded_edittext_bg"
-        android:elevation="5dp"
-        android:gravity="center"
-        android:text="0"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/time1"
-        app:layout_constraintStart_toStartOf="@+id/time1"
-        app:layout_constraintTop_toBottomOf="@+id/time1" />
+            <TextView
+                android:id="@+id/textNumberTwo4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Tempo"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/textView24"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/time5"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+            <EditText
+                android:id="@+id/time2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
 
-        android:background="@drawable/rounded_edittext_bg"
-        android:elevation="5dp"
-        android:gravity="center"
-        android:text="0"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/time4"
-        app:layout_constraintStart_toStartOf="@+id/time4"
-        app:layout_constraintTop_toBottomOf="@+id/time4" />
+                android:background="@drawable/rounded_edittext_bg"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="@+id/time1"
+                app:layout_constraintStart_toStartOf="@+id/time1"
+                app:layout_constraintTop_toBottomOf="@+id/time1" />
 
-    <EditText
-        android:id="@+id/time4"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+            <EditText
+                android:id="@+id/time5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
 
-        android:background="@drawable/rounded_edittext_bg"
-        android:elevation="5dp"
-        android:gravity="center"
-        android:text="0"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/time3"
-        app:layout_constraintStart_toStartOf="@+id/time3"
-        app:layout_constraintTop_toBottomOf="@+id/time3" />
+                android:background="@drawable/rounded_edittext_bg"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="@+id/time4"
+                app:layout_constraintStart_toStartOf="@+id/time4"
+                app:layout_constraintTop_toBottomOf="@+id/time4" />
 
-    <EditText
-        android:id="@+id/time1"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+            <EditText
+                android:id="@+id/time4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
 
-        android:background="@drawable/rounded_edittext_bg"
-        android:elevation="5dp"
-        android:gravity="center"
-        android:text="0"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/textNumberTwo4"
-        app:layout_constraintStart_toStartOf="@+id/textNumberTwo4"
-        app:layout_constraintTop_toBottomOf="@+id/textNumberTwo4" />
+                android:background="@drawable/rounded_edittext_bg"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="@+id/time3"
+                app:layout_constraintStart_toStartOf="@+id/time3"
+                app:layout_constraintTop_toBottomOf="@+id/time3" />
 
-    <EditText
-        android:id="@+id/time3"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+            <EditText
+                android:id="@+id/time1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
 
-        android:background="@drawable/rounded_edittext_bg"
-        android:elevation="5dp"
-        android:gravity="center"
-        android:text="0"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/time2"
-        app:layout_constraintStart_toStartOf="@+id/time2"
-        app:layout_constraintTop_toBottomOf="@+id/time2" />
+                android:background="@drawable/rounded_edittext_bg"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="@+id/textNumberTwo4"
+                app:layout_constraintStart_toStartOf="@+id/textNumberTwo4"
+                app:layout_constraintTop_toBottomOf="@+id/textNumberTwo4" />
 
-    <EditText
-        android:id="@+id/time6"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+            <EditText
+                android:id="@+id/time3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
 
-        android:background="@drawable/rounded_edittext_bg"
-        android:elevation="5dp"
-        android:gravity="center"
-        android:text="0"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/time5"
-        app:layout_constraintStart_toStartOf="@+id/time5"
-        app:layout_constraintTop_toBottomOf="@+id/time5" />
+                android:background="@drawable/rounded_edittext_bg"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="@+id/time2"
+                app:layout_constraintStart_toStartOf="@+id/time2"
+                app:layout_constraintTop_toBottomOf="@+id/time2" />
 
-    <EditText
-        android:id="@+id/time7"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+            <EditText
+                android:id="@+id/time6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
 
-        android:background="@drawable/rounded_edittext_bg"
-        android:elevation="5dp"
-        android:gravity="center"
-        android:text="0"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/time6"
-        app:layout_constraintStart_toStartOf="@+id/time6"
-        app:layout_constraintTop_toBottomOf="@+id/time6" />
+                android:background="@drawable/rounded_edittext_bg"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="@+id/time5"
+                app:layout_constraintStart_toStartOf="@+id/time5"
+                app:layout_constraintTop_toBottomOf="@+id/time5" />
 
-    <EditText
-        android:id="@+id/time8"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+            <EditText
+                android:id="@+id/time7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
 
-        android:background="@drawable/rounded_edittext_bg"
-        android:elevation="5dp"
-        android:gravity="center"
-        android:text="0"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/time7"
-        app:layout_constraintStart_toStartOf="@+id/time7"
-        app:layout_constraintTop_toBottomOf="@+id/time7" />
+                android:background="@drawable/rounded_edittext_bg"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="@+id/time6"
+                app:layout_constraintStart_toStartOf="@+id/time6"
+                app:layout_constraintTop_toBottomOf="@+id/time6" />
 
-    <EditText
-        android:id="@+id/time9"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+            <EditText
+                android:id="@+id/time8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
 
-        android:background="@drawable/rounded_edittext_bg"
-        android:elevation="5dp"
-        android:gravity="center"
-        android:text="0"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/time8"
-        app:layout_constraintStart_toStartOf="@+id/time8"
-        app:layout_constraintTop_toBottomOf="@+id/time8" />
+                android:background="@drawable/rounded_edittext_bg"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="@+id/time7"
+                app:layout_constraintStart_toStartOf="@+id/time7"
+                app:layout_constraintTop_toBottomOf="@+id/time7" />
 
-    <EditText
-        android:id="@+id/time10"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+            <EditText
+                android:id="@+id/time9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
 
-        android:background="@drawable/rounded_edittext_bg"
-        android:elevation="5dp"
-        android:gravity="center"
-        android:text="0"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/time9"
-        app:layout_constraintStart_toStartOf="@+id/time9"
-        app:layout_constraintTop_toBottomOf="@+id/time9" />
+                android:background="@drawable/rounded_edittext_bg"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="@+id/time8"
+                app:layout_constraintStart_toStartOf="@+id/time8"
+                app:layout_constraintTop_toBottomOf="@+id/time8" />
 
-    <EditText
-        android:id="@+id/bpm1"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/rounded_edittext_bg"
-        android:elevation="5dp"
-        android:gravity="center"
-        android:text="0"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/textView24"
-        app:layout_constraintHorizontal_bias="0.444"
-        app:layout_constraintStart_toStartOf="@+id/textView24"
-        app:layout_constraintTop_toBottomOf="@+id/textView24" />
+            <EditText
+                android:id="@+id/time10"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
 
-    <EditText
-        android:id="@+id/bpm4"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/rounded_edittext_bg"
-        android:elevation="5dp"
-        android:gravity="center"
-        android:text="0"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/bpm3"
-        app:layout_constraintStart_toStartOf="@+id/bpm3"
-        app:layout_constraintTop_toBottomOf="@+id/bpm3" />
+                android:background="@drawable/rounded_edittext_bg"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="@+id/time9"
+                app:layout_constraintStart_toStartOf="@+id/time9"
+                app:layout_constraintTop_toBottomOf="@+id/time9" />
 
-    <EditText
-        android:id="@+id/bpm2"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+            <EditText
+                android:id="@+id/bpm1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/rounded_edittext_bg"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="@+id/textView24"
+                app:layout_constraintHorizontal_bias="0.444"
+                app:layout_constraintStart_toStartOf="@+id/textView24"
+                app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
-        android:background="@drawable/rounded_edittext_bg"
-        android:elevation="5dp"
-        android:gravity="center"
-        android:text="0"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/bpm1"
-        app:layout_constraintStart_toStartOf="@+id/bpm1"
-        app:layout_constraintTop_toBottomOf="@+id/bpm1" />
+            <EditText
+                android:id="@+id/bpm4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/rounded_edittext_bg"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="@+id/bpm3"
+                app:layout_constraintStart_toStartOf="@+id/bpm3"
+                app:layout_constraintTop_toBottomOf="@+id/bpm3" />
 
-    <EditText
-        android:id="@+id/bpm5"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+            <EditText
+                android:id="@+id/bpm2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
 
-        android:background="@drawable/rounded_edittext_bg"
-        android:elevation="5dp"
-        android:gravity="center"
-        android:text="0"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/bpm4"
-        app:layout_constraintStart_toStartOf="@+id/bpm4"
-        app:layout_constraintTop_toBottomOf="@+id/bpm4" />
+                android:background="@drawable/rounded_edittext_bg"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="@+id/bpm1"
+                app:layout_constraintStart_toStartOf="@+id/bpm1"
+                app:layout_constraintTop_toBottomOf="@+id/bpm1" />
 
-    <EditText
-        android:id="@+id/bpm3"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+            <EditText
+                android:id="@+id/bpm5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
 
-        android:background="@drawable/rounded_edittext_bg"
-        android:elevation="5dp"
-        android:gravity="center"
-        android:text="0"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/bpm2"
-        app:layout_constraintStart_toStartOf="@+id/bpm2"
-        app:layout_constraintTop_toBottomOf="@+id/bpm2" />
+                android:background="@drawable/rounded_edittext_bg"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="@+id/bpm4"
+                app:layout_constraintStart_toStartOf="@+id/bpm4"
+                app:layout_constraintTop_toBottomOf="@+id/bpm4" />
 
-    <EditText
-        android:id="@+id/bpm6"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+            <EditText
+                android:id="@+id/bpm3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
 
-        android:background="@drawable/rounded_edittext_bg"
-        android:elevation="5dp"
-        android:gravity="center"
-        android:text="0"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/bpm5"
-        app:layout_constraintStart_toStartOf="@+id/bpm5"
-        app:layout_constraintTop_toBottomOf="@+id/bpm5" />
+                android:background="@drawable/rounded_edittext_bg"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="@+id/bpm2"
+                app:layout_constraintStart_toStartOf="@+id/bpm2"
+                app:layout_constraintTop_toBottomOf="@+id/bpm2" />
 
-    <EditText
-        android:id="@+id/bpm7"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+            <EditText
+                android:id="@+id/bpm6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
 
-        android:background="@drawable/rounded_edittext_bg"
-        android:elevation="5dp"
-        android:gravity="center"
-        android:text="0"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/bpm6"
-        app:layout_constraintStart_toStartOf="@+id/bpm6"
-        app:layout_constraintTop_toBottomOf="@+id/bpm6" />
+                android:background="@drawable/rounded_edittext_bg"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="@+id/bpm5"
+                app:layout_constraintStart_toStartOf="@+id/bpm5"
+                app:layout_constraintTop_toBottomOf="@+id/bpm5" />
 
-    <EditText
-        android:id="@+id/bpm8"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+            <EditText
+                android:id="@+id/bpm7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
 
-        android:background="@drawable/rounded_edittext_bg"
-        android:elevation="5dp"
-        android:gravity="center"
-        android:text="0"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/bpm7"
-        app:layout_constraintStart_toStartOf="@+id/bpm7"
-        app:layout_constraintTop_toBottomOf="@+id/bpm7" />
+                android:background="@drawable/rounded_edittext_bg"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="@+id/bpm6"
+                app:layout_constraintStart_toStartOf="@+id/bpm6"
+                app:layout_constraintTop_toBottomOf="@+id/bpm6" />
 
-    <EditText
-        android:id="@+id/bpm9"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+            <EditText
+                android:id="@+id/bpm8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
 
-        android:background="@drawable/rounded_edittext_bg"
-        android:elevation="5dp"
-        android:gravity="center"
-        android:text="0"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/bpm8"
-        app:layout_constraintStart_toStartOf="@+id/bpm8"
-        app:layout_constraintTop_toBottomOf="@+id/bpm8" />
+                android:background="@drawable/rounded_edittext_bg"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="@+id/bpm7"
+                app:layout_constraintStart_toStartOf="@+id/bpm7"
+                app:layout_constraintTop_toBottomOf="@+id/bpm7" />
 
-    <EditText
-        android:id="@+id/bpm10"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+            <EditText
+                android:id="@+id/bpm9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
 
-        android:background="@drawable/rounded_edittext_bg"
-        android:elevation="5dp"
-        android:gravity="center"
-        android:text="0"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/bpm9"
-        app:layout_constraintStart_toStartOf="@+id/bpm9"
-        app:layout_constraintTop_toBottomOf="@+id/bpm9" />
+                android:background="@drawable/rounded_edittext_bg"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="@+id/bpm8"
+                app:layout_constraintStart_toStartOf="@+id/bpm8"
+                app:layout_constraintTop_toBottomOf="@+id/bpm8" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="80dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="Volta"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <EditText
+                android:id="@+id/bpm10"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
 
-    <TextView
-        android:id="@+id/textView24"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="BPM"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/textNumberTwo4"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="parent" />
+                android:background="@drawable/rounded_edittext_bg"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="@+id/bpm9"
+                app:layout_constraintStart_toStartOf="@+id/bpm9"
+                app:layout_constraintTop_toBottomOf="@+id/bpm9" />
 
-    <TextView
-        android:id="@+id/textNumberOne"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="1"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="80dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Volta"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textNumberTwo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="2"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="@+id/textNumberOne"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textNumberOne"
-        app:layout_constraintTop_toBottomOf="@+id/textNumberOne" />
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="BPM"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@+id/textNumberTwo4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/textView2"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textNumberFive"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="5"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="@+id/textNumberFour"
-        app:layout_constraintStart_toStartOf="@+id/textNumberFour"
-        app:layout_constraintTop_toBottomOf="@+id/textNumberFour" />
+            <TextView
+                android:id="@+id/textNumberOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="1"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView2"
+                app:layout_constraintHorizontal_bias="0.51"
+                app:layout_constraintStart_toStartOf="@+id/textView2"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-    <TextView
-        android:id="@+id/textNumberFour"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="4"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="@+id/textNumberThree"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textNumberThree"
-        app:layout_constraintTop_toBottomOf="@+id/textNumberThree" />
+            <TextView
+                android:id="@+id/textNumberTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="2"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@+id/textNumberOne"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textNumberOne"
+                app:layout_constraintTop_toBottomOf="@+id/textNumberOne" />
 
-    <TextView
-        android:id="@+id/textNumberThree"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="3"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="@+id/textNumberTwo"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textNumberTwo"
-        app:layout_constraintTop_toBottomOf="@+id/textNumberTwo" />
+            <TextView
+                android:id="@+id/textNumberFive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="5"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@+id/textNumberFour"
+                app:layout_constraintStart_toStartOf="@+id/textNumberFour"
+                app:layout_constraintTop_toBottomOf="@+id/textNumberFour" />
 
-    <TextView
-        android:id="@+id/textNumberSix"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="6"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="@+id/textNumberFive"
-        app:layout_constraintStart_toStartOf="@+id/textNumberFive"
-        app:layout_constraintTop_toBottomOf="@+id/textNumberFive" />
+            <TextView
+                android:id="@+id/textNumberFour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="4"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@+id/textNumberThree"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textNumberThree"
+                app:layout_constraintTop_toBottomOf="@+id/textNumberThree" />
 
-    <TextView
-        android:id="@+id/textNumberSeven"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="7"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="@+id/textNumberSix"
-        app:layout_constraintStart_toStartOf="@+id/textNumberSix"
-        app:layout_constraintTop_toBottomOf="@+id/textNumberSix" />
+            <TextView
+                android:id="@+id/textNumberThree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="3"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@+id/textNumberTwo"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textNumberTwo"
+                app:layout_constraintTop_toBottomOf="@+id/textNumberTwo" />
 
-    <TextView
-        android:id="@+id/textNumberEight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="8"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="@+id/textNumberSeven"
-        app:layout_constraintStart_toStartOf="@+id/textNumberSeven"
-        app:layout_constraintTop_toBottomOf="@+id/textNumberSeven" />
+            <TextView
+                android:id="@+id/textNumberSix"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="6"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@+id/textNumberFive"
+                app:layout_constraintStart_toStartOf="@+id/textNumberFive"
+                app:layout_constraintTop_toBottomOf="@+id/textNumberFive" />
 
-    <TextView
-        android:id="@+id/textNumberNine"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="9"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="@+id/textNumberEight"
-        app:layout_constraintStart_toStartOf="@+id/textNumberEight"
-        app:layout_constraintTop_toBottomOf="@+id/textNumberEight" />
+            <TextView
+                android:id="@+id/textNumberSeven"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="7"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@+id/textNumberSix"
+                app:layout_constraintStart_toStartOf="@+id/textNumberSix"
+                app:layout_constraintTop_toBottomOf="@+id/textNumberSix" />
 
-    <TextView
-        android:id="@+id/textNumberTen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="10"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="@+id/textNumberNine"
-        app:layout_constraintStart_toStartOf="@+id/textNumberNine"
-        app:layout_constraintTop_toBottomOf="@+id/textNumberNine" />
+            <TextView
+                android:id="@+id/textNumberEight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="8"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@+id/textNumberSeven"
+                app:layout_constraintStart_toStartOf="@+id/textNumberSeven"
+                app:layout_constraintTop_toBottomOf="@+id/textNumberSeven" />
 
-    <TextView
-        android:id="@+id/textNumberTwo5"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="120dp"
-        android:background="@drawable/rounded_edittext_bg"
-        android:elevation="5dp"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/textNumberNine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="9"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@+id/textNumberEight"
+                app:layout_constraintStart_toStartOf="@+id/textNumberEight"
+                app:layout_constraintTop_toBottomOf="@+id/textNumberEight" />
 
-    <Chronometer
-        android:id="@+id/chronometer"
-        android:layout_width="108dp"
-        android:layout_height="45dp"
-        android:layout_marginBottom="120dp"
-        android:elevation="5dp"
-        android:textColor="#FFFFFF"
-        android:textSize="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/textNumberTen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="10"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@+id/textNumberNine"
+                app:layout_constraintStart_toStartOf="@+id/textNumberNine"
+                app:layout_constraintTop_toBottomOf="@+id/textNumberNine" />
 
-    <Button
-        android:id="@+id/buttonStartMetronomo"
-        style="@style/CustomButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginBottom="40dp"
-        android:text="Iniciar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/buttonStopMetronomo"
-        style="@style/CustomButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="68dp"
-        android:layout_marginBottom="40dp"
-        android:text="Parar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/buttonStartMetronomo" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/time10"
+                tools:layout_editor_absoluteX="0dp">
 
+                <!-- TextView, positioned centrally but invisible to layout other views -->
+                <TextView
+                    android:id="@+id/textNumberTwo5"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_edittext_bg"
+                    android:elevation="5dp"
+                    android:textSize="34sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- Chronometer, aligned to the invisible TextView -->
+                <Chronometer
+                    android:id="@+id/chronometer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:elevation="5dp"
+                    android:textColor="#FFFFFF"
+                    android:textSize="32sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textNumberTwo5"
+                    app:layout_constraintLeft_toLeftOf="@+id/textNumberTwo5"
+                    app:layout_constraintRight_toRightOf="@+id/textNumberTwo5"
+                    app:layout_constraintTop_toTopOf="@+id/textNumberTwo5" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/buttonStartMetronomo"
+                style="@style/CustomButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Iniciar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.263"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+                app:layout_constraintVertical_bias="0.024" />
+
+            <Button
+                android:id="@+id/buttonStopMetronomo"
+                style="@style/CustomButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
+                android:text="Parar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.433"
+                app:layout_constraintStart_toEndOf="@+id/buttonStartMetronomo"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+                app:layout_constraintVertical_bias="1.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
+

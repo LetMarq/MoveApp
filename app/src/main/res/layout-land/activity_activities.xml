@@ -7,38 +7,44 @@
     android:background="@drawable/background_gradient"
     tools:context=".ActivitiesActivity">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Atividades"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/configButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageButton
         android:id="@+id/configButton"
         android:layout_width="44dp"
         android:layout_height="44dp"
         android:background="@null"
-        android:scaleType="fitStart"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.043"
+        android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"
         app:srcCompat="@drawable/ic_baseline_settings_24" />
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cycling_container"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="144dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/rounded_background"
         android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/swim_container"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.5">
 
-        <!-- ImageButton positioned at the top within the container -->
         <ImageButton
             android:id="@+id/cyclingButton"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:background="@null"
             android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,37 +52,35 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_pedal_bike_24" />
 
-        <!-- TextView positioned directly below the ImageButton -->
         <TextView
             android:id="@+id/cyclingText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ciclismo"
-            android:textSize="20sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@id/cyclingButton"
             app:layout_constraintStart_toStartOf="@id/cyclingButton"
             app:layout_constraintTop_toBottomOf="@id/cyclingButton" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/swim_container"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/rounded_background"
         android:padding="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/run_container"
-        app:layout_constraintEnd_toEndOf="@+id/cycling_container"
-        app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintStart_toStartOf="@+id/cycling_container"
-        app:layout_constraintTop_toBottomOf="@+id/cycling_container"
-        app:layout_constraintVertical_bias="0.467">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/run_container"
+        app:layout_constraintStart_toEndOf="@+id/cycling_container"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.5">
 
-        <!-- ImageButton positioned at the top within the container -->
         <ImageButton
             android:id="@+id/natacaoButton"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:background="@null"
             android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
@@ -84,13 +88,12 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_water_24" />
 
-        <!-- TextView positioned directly below the ImageButton -->
         <TextView
             android:id="@+id/natacaoText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Natação"
-            android:textSize="20sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@id/natacaoButton"
             app:layout_constraintStart_toStartOf="@id/natacaoButton"
             app:layout_constraintTop_toBottomOf="@id/natacaoButton" />
@@ -98,22 +101,20 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/run_container"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_background"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/swim_container"
-        app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintStart_toStartOf="@+id/swim_container"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.848">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/swim_container"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.502">
 
-        <!-- ImageButton positioned at the top within the container -->
         <ImageButton
             android:id="@+id/runButton"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:background="@null"
             android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
@@ -121,31 +122,15 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/run_svgrepo_com__2_" />
 
-        <!-- TextView positioned directly below the ImageButton -->
         <TextView
             android:id="@+id/runText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Corrida"
-            android:textSize="20sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@id/runButton"
             app:layout_constraintStart_toStartOf="@id/runButton"
             app:layout_constraintTop_toBottomOf="@id/runButton" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
-        android:layout_marginEnd="135dp"
-        android:text="Atividades"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <!-- Hexadecimal color code for purple -->
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -176,12 +176,12 @@
         android:layout_width="183dp"
         android:layout_height="96dp"
         android:background="@drawable/rounded_background"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/container_layout"
         app:layout_constraintEnd_toStartOf="@+id/chrono_container"
-        app:layout_constraintHorizontal_bias="0.73"
+        app:layout_constraintHorizontal_bias="0.622"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.48">
+        app:layout_constraintTop_toBottomOf="@+id/frequency_display_text"
+        app:layout_constraintVertical_bias="0.152">
 
         <!-- First TextView -->
         <TextView
@@ -206,12 +206,12 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_background"
         android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/container_layout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.83"
+        app:layout_constraintHorizontal_bias="0.862"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time_display_text"
-        app:layout_constraintVertical_bias="0.077">
+        app:layout_constraintVertical_bias="0.197">
 
         <Chronometer
             android:id="@+id/chronometer"
