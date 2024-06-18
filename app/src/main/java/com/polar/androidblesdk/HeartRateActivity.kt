@@ -89,7 +89,7 @@ class HeartRateActivity : AppCompatActivity() {
     private val handler = Handler()
     private val MAX_FREQUENCY = 120
     private val MIN_FREQUENCY = 20
-
+    private lateinit var audioManager: AudioManager
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -108,9 +108,7 @@ class HeartRateActivity : AppCompatActivity() {
 
         val sharedPref = getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
         deviceId = sharedPref.getString("deviceId", deviceId) ?: deviceId
-//        audioManager.requestAudioFocus(
-//            AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT).build()
-//        )
+
 
         // Registrando uma mensagem de log para verificar o valor recuperado
         showToast("Device ID: $deviceId")
@@ -215,6 +213,7 @@ class HeartRateActivity : AppCompatActivity() {
             if (isMetronomeActive) {
                 startButtonText.text = "Parar"
                 currentFrequency = initialFrequencyEditText.text.toString().toIntOrNull() ?: 60
+
                 showToast("Metronome monitoring activated.")
                 handler.postDelayed({
                     scheduleFrequencyAdjustment()
@@ -278,10 +277,15 @@ class HeartRateActivity : AppCompatActivity() {
     }
 
     private fun scheduleFrequencyAdjustment() {
+        if (scheduledExecutorService?.isShutdown == true || scheduledExecutorService == null) {
+            scheduledExecutorService = Executors.newSingleThreadScheduledExecutor()
+        }
+
         scheduledExecutorService?.scheduleAtFixedRate({
             val maxHr = maxHrEditText.text.toString().toIntOrNull()
             val minHr = minHrEditText.text.toString().toIntOrNull()
             Log.d(TAG, "HR: ${latestHR.toString()} | FR: ${currentFrequency.toString()}")
+            Log.d(TAG, minHr.toString())
 
             if (maxHr != null && minHr != null) {
                 synchronized(this) {
@@ -384,36 +388,45 @@ class HeartRateActivity : AppCompatActivity() {
             Log.d(TAG, "HR streaming already in progress.")
         }
     }
+
     private fun startMetronomeWithFrequency(frequency: Int) {
+        // Recria o ToneGenerator antes de usá-lo
+        if (toneGenerator == null) {
+            toneGenerator = ToneGenerator(AudioManager.STREAM_ALARM, 100)
+        }
+        Log.d(TAG, "**** Starting metronome with frequency: $frequency")
         val interval = 60000L / frequency
         metronomeTimer?.cancel()
         metronomeTimer = Timer().apply {
             scheduleAtFixedRate(object : TimerTask() {
                 override fun run() {
+                    // Garante que o ToneGenerator esteja disponível e comece o tom
                     toneGenerator?.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 100)
                 }
             }, 0, interval)
         }
     }
 
-    private fun stopMetronome() {
-        // This will stop all currently executing tasks and prevent scheduled tasks from starting.
-        scheduledExecutorService?.shutdownNow()
-        try {
-            // Ensure termination of all tasks.
-            if (!scheduledExecutorService?.awaitTermination(1, TimeUnit.SECONDS)!!) {
-                scheduledExecutorService?.shutdownNow()
-            }
-        } catch (ie: InterruptedException) {
-            // Re-cancel if current thread also interrupted
-            scheduledExecutorService?.shutdownNow()
-            Thread.currentThread().interrupt()  // preserve interrupt status
-        }
 
-        // Nullify the executor service if you plan to reinitialize it later
+    private fun stopMetronome() {
+        // Cancela o timer e verifica se ele é nulo antes de acessar métodos
+        metronomeTimer?.cancel()
+        metronomeTimer = null
+
+        // Interrompe e verifica se o serviço agendado não é nulo antes de tentar terminá-lo
+        scheduledExecutorService?.let {
+            it.shutdownNow()
+            try {
+                if (!it.awaitTermination(1, TimeUnit.SECONDS)) {
+                    it.shutdownNow()
+                }
+            } catch (ie: InterruptedException) {
+                Thread.currentThread().interrupt()  // Mantém o status de interrupção
+            }
+        }
         scheduledExecutorService = null
 
-        // Stop the tone generator if used for playing sound
+        // Para e libera o ToneGenerator apenas se não for nulo
         toneGenerator?.stopTone()
         toneGenerator?.release()
         toneGenerator = null
