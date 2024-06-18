@@ -4,25 +4,19 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.media.AudioFocusRequest
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import androidx.annotation.StringRes
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.graphics.drawable.DrawableCompat
-import androidx.core.util.Pair
-import com.google.android.material.snackbar.Snackbar
+
 import com.polar.sdk.api.PolarBleApi
 import com.polar.sdk.api.PolarBleApiCallback
 import com.polar.sdk.api.PolarBleApiDefaultImpl
-import com.polar.sdk.api.PolarH10OfflineExerciseApi
 import com.polar.sdk.api.errors.PolarInvalidArgument
 import com.polar.sdk.api.model.*
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.core.Single
+
 import io.reactivex.rxjava3.disposables.Disposable
 import java.util.*
 import android.media.AudioManager
@@ -98,12 +92,6 @@ class HeartRateActivity : AppCompatActivity() {
 
 
 
-
-
-
-    private val entryCache: MutableMap<String, MutableList<PolarOfflineRecordingEntry>> = mutableMapOf()
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_heart_rate)
@@ -120,6 +108,9 @@ class HeartRateActivity : AppCompatActivity() {
 
         val sharedPref = getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
         deviceId = sharedPref.getString("deviceId", deviceId) ?: deviceId
+//        audioManager.requestAudioFocus(
+//            AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT).build()
+//        )
 
         // Registrando uma mensagem de log para verificar o valor recuperado
         showToast("Device ID: $deviceId")
