@@ -288,14 +288,16 @@ class HeartRateActivity : AppCompatActivity() {
             Log.d(TAG, minHr.toString())
 
             if (maxHr != null && minHr != null) {
-                synchronized(this) {
-                    if (latestHR < maxHr && currentFrequency <= MAX_FREQUENCY) {
-                        currentFrequency += 1
-                    } else if (latestHR > minHr && currentFrequency >= MIN_FREQUENCY) {
-                        currentFrequency -= 1
+                if (latestHR > maxHr || latestHR < minHr){
+                    synchronized(this) {
+                        if (latestHR < maxHr && currentFrequency <= MAX_FREQUENCY) {
+                            currentFrequency += 1
+                        } else if (latestHR > minHr && currentFrequency >= MIN_FREQUENCY) {
+                            currentFrequency -= 1
+                        }
                     }
+                    startMetronomeWithFrequency(currentFrequency)
                 }
-                startMetronomeWithFrequency(currentFrequency)
             }
         }, 0, 5, TimeUnit.SECONDS)
     }

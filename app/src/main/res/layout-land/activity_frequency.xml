@@ -38,14 +38,14 @@
         android:id="@+id/metronom_container"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="76dp"
         android:background="@drawable/rounded_background"
         android:padding="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/heartrate_container"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13"
-        app:layout_constraintVertical_bias="0.603">
+        app:layout_constraintVertical_bias="0.015">
 
         <!-- ImageButton positioned at the top within the container -->
         <ImageButton
@@ -75,14 +75,15 @@
         android:id="@+id/heartrate_container"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
         android:background="@drawable/rounded_background"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/metronom_container"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/metronom_container"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.637">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.433"
+        app:layout_constraintStart_toEndOf="@+id/metronom_container"
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        app:layout_constraintVertical_bias="0.015">
 
         <!-- ImageButton positioned at the top within the container -->
         <ImageButton
@@ -107,30 +108,4 @@
             app:layout_constraintStart_toStartOf="@id/hearRateButton"
             app:layout_constraintTop_toBottomOf="@id/hearRateButton" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!--    <Button-->
-<!--        android:id="@+id/metronomoButton"-->
-<!--        android:layout_width="300dp"-->
-<!--        android:layout_height="70dp"-->
-<!--        android:layout_marginBottom="72dp"-->
-<!--        android:text="METRÔNOMO"-->
-<!--        android:textSize="18sp"-->
-<!--        style="@style/CustomButtonStyle"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/hearRateButton"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.54"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/hearRateButton"-->
-<!--        android:layout_width="300dp"-->
-<!--        android:layout_height="70dp"-->
-<!--        android:layout_marginBottom="280dp"-->
-<!--        android:text="FREQUENCIA CARDÍACA"-->
-<!--        android:textSize="18sp"-->
-<!--        style="@style/CustomButtonStyle"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.54"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>
