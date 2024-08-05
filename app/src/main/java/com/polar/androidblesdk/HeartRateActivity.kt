@@ -74,6 +74,7 @@ class HeartRateActivity : AppCompatActivity() {
     private lateinit var startButton: ImageButton
     private lateinit var switchToConfigActivity: ImageButton
     private lateinit var hrDisplayTextView: TextView
+    private lateinit var metronomFrequency: TextView
     private lateinit var maxHrEditText: EditText
     private lateinit var minHrEditText: EditText
     private lateinit var startButtonText: TextView
@@ -105,6 +106,7 @@ class HeartRateActivity : AppCompatActivity() {
         initialTimeEditText = findViewById(R.id.time_display_text)
         scheduledExecutorService = Executors.newSingleThreadScheduledExecutor()
         chronometer = findViewById(R.id.chronometer)
+        metronomFrequency = findViewById(R.id.metronom_display_text)
 
         val sharedPref = getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
         deviceId = sharedPref.getString("deviceId", deviceId) ?: deviceId
@@ -207,17 +209,18 @@ class HeartRateActivity : AppCompatActivity() {
 
         startButton.setOnClickListener {
             isMetronomeActive = !isMetronomeActive
-            val delayInSeconds = initialTimeEditText.text.toString().toIntOrNull() ?: 0
-            val delayInMillis = delayInSeconds * 1000
+            val initialDurationInSeconds  = initialTimeEditText.text.toString().toIntOrNull() ?: 0
+            val initialDurationInMillis = initialDurationInSeconds * 1000
 
             if (isMetronomeActive) {
                 startButtonText.text = "Parar"
                 currentFrequency = initialFrequencyEditText.text.toString().toIntOrNull() ?: 60
 
                 showToast("Metronome monitoring activated.")
+                startMetronomeWithFrequency(currentFrequency)
                 handler.postDelayed({
                     scheduleFrequencyAdjustment()
-                }, delayInMillis.toLong())
+                }, initialDurationInMillis.toLong())
                 chronometer.base = SystemClock.elapsedRealtime()
                 chronometer.start()
             } else {
@@ -295,6 +298,9 @@ class HeartRateActivity : AppCompatActivity() {
                         } else if (latestHR > minHr && currentFrequency >= MIN_FREQUENCY) {
                             currentFrequency -= 1
                         }
+                    }
+                    runOnUiThread {
+                        metronomFrequency.text = "Frequência de Passo: $currentFrequency"
                     }
                     startMetronomeWithFrequency(currentFrequency)
                 }

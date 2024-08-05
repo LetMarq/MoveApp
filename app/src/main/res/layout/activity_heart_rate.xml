@@ -60,29 +60,28 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.853"
+        app:layout_constraintHorizontal_bias="0.939"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.374" />
-
+        app:layout_constraintTop_toBottomOf="@+id/container"
+        app:layout_constraintVertical_bias="0.066" />
 
     <EditText
         android:id="@+id/frequency_display_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_background"
-        android:hint="Frequência inicial:"
-        android:padding="10dp"
-        android:textSize="20sp"
-        android:inputType="number"
         android:focusable="true"
         android:focusableInTouchMode="true"
+        android:hint="Frequência inicial:"
+        android:inputType="number"
+        android:padding="10dp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/time_display_text"
-        app:layout_constraintHorizontal_bias="0.826"
+        app:layout_constraintHorizontal_bias="0.231"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.374" />
+        app:layout_constraintTop_toBottomOf="@+id/container"
+        app:layout_constraintVertical_bias="0.066" />
 
     <ImageButton
         android:id="@+id/configButton"
@@ -171,34 +170,24 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/text_container"
-        android:layout_width="183dp"
-        android:layout_height="96dp"
+    <TextView
+        android:id="@+id/hr_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:background="@drawable/rounded_background"
-        app:layout_constraintBottom_toTopOf="@+id/container_layout"
-        app:layout_constraintEnd_toStartOf="@+id/chrono_container"
-        app:layout_constraintHorizontal_bias="0.622"
+        android:focusableInTouchMode="true"
+        android:hint="Frequência cardíaca:"
+        android:inputType="number"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:clickable="false"
+        android:editable="false"
+        android:focusable="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.078"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frequency_display_text"
-        app:layout_constraintVertical_bias="0.152">
-
-        <!-- First TextView -->
-        <TextView
-            android:id="@+id/hr_display"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:padding="8dp"
-            android:text="Frequência cardíaca: "
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!-- Second TextView, positioned below the first TextView -->
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toBottomOf="@+id/frequency_display_text" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/chrono_container"
@@ -208,10 +197,10 @@
         android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/container_layout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.862"
+        app:layout_constraintHorizontal_bias="0.915"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time_display_text"
-        app:layout_constraintVertical_bias="0.197">
+        app:layout_constraintVertical_bias="0.215">
 
         <Chronometer
             android:id="@+id/chronometer"
@@ -263,6 +252,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edit_text_max_hr" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/metronom_display_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/rounded_background"
+        android:clickable="false"
+        android:editable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:hint="Frequência de Passo:"
+        android:inputType="number"
+        android:padding="10dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hr_display"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
